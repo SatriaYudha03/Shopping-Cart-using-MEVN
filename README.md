@@ -1,4 +1,4 @@
-# vuestore-client
+# Shopping Cart
 
 ## Project setup
 ```
