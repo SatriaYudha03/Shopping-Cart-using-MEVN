@@ -1,10 +1,20 @@
 const express = require('express')
+const cors = require('cors'); 
 const app = express()
+const path = require('path')
 const PORT = process.env.PORT || 8000
 
 app.use(express.json())
 app.use(express.urlencoded({ extended:true}))
 
+// Tambahkan middleware CORS di sini
+app.use(cors()); // Izinkan semua origin (CORS)
+
+// Jika hanya ingin mengizinkan frontend tertentu:
+app.use(cors({ origin: 'http://localhost:8080' }));
+
+// Middleware untuk melayani file statis
+app.use('/img', express.static(path.join(__dirname,'./public/img')))
 
 const db = require('./app/models')
 db.mongoose
